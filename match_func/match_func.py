@@ -1,7 +1,7 @@
 """
 @file     match_func.py
 @brief    Pattern matching as a function.
-@date     20/07/2023
+@date     21/07/2023
 @author   Julio Cabria
 """
 
@@ -29,34 +29,29 @@ def match(variable, dictionary, *, default=None):
     Returns:
         any: The matching result from 'dictionary' or 'default'.
     """
-
-    # match(5, {5:"five"})
+    # Exact match
     if variable in dictionary:
         return dictionary[variable]
 
+    # Type match
+    if type(variable) in dictionary:
+        return dictionary[type(variable)]
+
+    # Condition match
+    if True in dictionary:
+        return dictionary[True]
+
     for key, val in dictionary.items():
-
-        # match(5, {5 > 10:"5 is greater than 10"})
-        if key is True:
-            return val
-
-        # match(5, {int:"5 is an integer"})
-        if type(key) is type:
-            if isinstance(variable, key):
-                return val
-            continue
 
         if not hasattr(key, "__contains__"):
             continue
 
-        # match(5, {range(0,10):"5 is between 0 and 10"})
         if isinstance(key, range):
             check = int(variable)
-
-        # match(5, {(1,2,5):"5 is in the tuple"})
         else:
             check = variable
 
+        # Container match
         if check in key:
             return val
 
