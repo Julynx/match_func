@@ -2,8 +2,9 @@
 *Pattern matching as a function.*
 ```python
 from match_func import match
-
-# Use ranges!
+```
+> Use ranges!
+```python
 age = 20
 match(age,
       {range(0, 3):   'Toddler',
@@ -12,8 +13,9 @@ match(age,
        range(18, 65): 'Adult'},
       default =       'Elder')
 >> 'Adult'
-
-# Use tuples!
+```
+> Use tuples!
+```python
 name = 'Clara'
 match(name,
       {('Laura', 'John', 'Luke'): 'First class',
@@ -21,24 +23,27 @@ match(name,
        ('Jason', 'Mary'):         'Economy'},
       default =                   'Non customer')
 >> 'Business'
-
-# Use conditions!
+```
+> Use conditions!
+```python
 value = 5
 match(value,
       {value < 10:        'Small',
        10 <= value <= 20: 'Medium',
        value > 20:        'Large'})
 >> 'Small'
-
-# Use types!
+```
+> Use types!
+```python
 something = 'Hello'
 match(something,
       {int:     'Its an integer',
        str:     'Its a string'},
       default = 'Its something else')
 >> 'Its a string'
-
-# Mix and match!
+```
+> Mix and match!
+```python
 earnings = 10_000
 match(earnings,
       {str:              'Invalid type: str',
